@@ -81,25 +81,6 @@ local plugins = {
         }
     },
 
-    -- telescope
-    {
-        'nvim-telescope/telescope.nvim',
-        tag = '0.1.2',
-        -- or                              , branch = '0.1.x',
-        dependencies = { 'nvim-lua/plenary.nvim' },
-        config = function()
-            require("config.telescope")
-        end
-    },
-    {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        -- NOTE: If you are having trouble with this installation,
-        --       refer to the README for telescope-fzf-native for more instructions.
-        build = 'make',
-        cond = function()
-            return vim.fn.executable 'make' == 1
-        end,
-    },
 
     {
         "nvim-lualine/lualine.nvim",
@@ -126,18 +107,40 @@ local plugins = {
         opts = {},
         -- stylua: ignore
         keys = {
-            { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
-            { "S",     mode = { "n", "o", "x" }, function() require("flash").treesitter() end,        desc =
-            "Flash Treesitter" },
-            { "r",     mode = "o",               function() require("flash").remote() end,            desc =
-            "Remote Flash" },
-            { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end,
-                                                                                                          desc =
-                "Treesitter Search" },
-            { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc =
-            "Toggle Flash Search" },
+            { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+            {
+                "S",
+                mode = { "n", "o", "x" },
+                function() require("flash").treesitter() end,
+                desc =
+                "Flash Treesitter"
+            },
+            {
+                "r",
+                mode = "o",
+                function() require("flash").remote() end,
+                desc =
+                "Remote Flash"
+            },
+            {
+                "R",
+                mode = { "o", "x" },
+                function() require("flash").treesitter_search() end,
+                desc =
+                "Treesitter Search"
+            },
+            {
+                "<c-s>",
+                mode = { "c" },
+                function() require("flash").toggle() end,
+                desc =
+                "Toggle Flash Search"
+            },
         },
-    }
+    },
+
+    --multi cursors
+    { 'mg979/vim-visual-multi', branch = 'master' },
 }
 
 return plugins
